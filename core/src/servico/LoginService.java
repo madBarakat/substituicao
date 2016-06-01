@@ -20,7 +20,7 @@ import org.joda.time.Interval;
  */
 public class LoginService {
     
-    private UsuarioJpaController controller;
+    private final UsuarioJpaController controller;
     
     public LoginService(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pro_subPU");
