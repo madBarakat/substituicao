@@ -65,38 +65,29 @@ public class ProfessorService {
         
         List<ProfessorModel> profsPossiveis = new ArrayList<ProfessorModel>();
         
-        for(Professor professor : todosProfessores){
-            
-            if(!professor.equals(professorAusente)){
-                //profsMenosAusente.add(professor);
-                
-                if(professor.EhCompativelCom(aulasPerdidas)){
-                    
-                    Boolean compatível = true;
-                    
-                    for(Ausencia ausenciaPreExistente : todasAsAusencias)
-                    {
-                        if(ausenciaPreExistente.getProfessorSubstituto() != null)
-                        {
-                            if(ausenciaPreExistente.getProfessorSubstituto().getNome().equals(professor.getNome()))
-                            {
-                                if(ausenciaPreExistente.getPeriodo().overlaps(ausência.getPeriodo()))
-                                    compatível = false;
-                            }
-                        }
-                    }
-                    
-                    if(compatível)
-                    {
-                        ProfessorModel model = new ProfessorModel();
+        for(Professor professor : todosProfessores) {
+            if(professor.equals(professorAusente) || !professor.EhCompativelCom(aulasPerdidas))
+                continue;
 
-                        model.id = professor.getId();
-                        model.Nome = professor.getNome();
+            Boolean compatível = true;
 
-                        profsPossiveis.add(model);
-                    }
+            for(Ausencia ausenciaPreExistente : todasAsAusencias) {
+                if(ausenciaPreExistente.getProfessorSubstituto() != null
+                    && ausenciaPreExistente.getProfessorSubstituto().equals(professor)
+                    && ausenciaPreExistente.getPeriodo().overlaps(ausência.getPeriodo())) {
+                    compatível = false;
+                    break;
                 }
-            }   
+            }
+
+            if(compatível) {
+                ProfessorModel model = new ProfessorModel();
+
+                model.id = professor.getId();
+                model.Nome = professor.getNome();
+
+                profsPossiveis.add(model);
+            }
         }
         
         return profsPossiveis;
