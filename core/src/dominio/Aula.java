@@ -132,7 +132,7 @@ public class Aula implements Serializable {
         
         Interval intervaloTemp = new Interval(tempInicio, tempFim);
         
-        return intervaloTemp.overlap(outroPeriodo) != null;
+        return intervaloTemp.overlaps(outroPeriodo);
     }
     
 }
