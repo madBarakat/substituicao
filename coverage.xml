@@ -17,7 +17,7 @@
 			</executiondata>
 			<structure name="JacocoReport">
 				<classfiles>
-					<fileset dir="${result.classes.dir}"/>"
+					<fileset dir="${result.classes.dir}"/>
 				</classfiles>
 				<sourcefiles encoding="UTF-8">
 					<fileset dir="${src.dir}"/>
