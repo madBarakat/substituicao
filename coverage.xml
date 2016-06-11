@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<property name="src.dir" value="src"/>
+	<property name="test.dir" value="test"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="result.dir" value="build"/>
+	<property name="result.classes.dir" location="${result.dir}/classes"/>	
+	<property name="result.report.dir" location="${result.dir}/jacoco"/>
+	<property name="result.exec.file" location="${result.dir}/jacoco.exec"/>
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml"> 
+		<classpath path="lib/jacocoant.jar"/>
+	</taskdef>
+	<target name="jacocoReport">
+		<jacoco:report>
+			<executiondata>
+				<file file="${result.exec.file}"/>
+			</executiondata>
+			<structure name="Jacoco Report">
+				<classfiles>
+					<fileset dir="${result.classes.dir}"/>"
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${src.dir}"/>
+				</sourcefiles>
+				
+			</structure>
+			<xml destfile="${result.report.dir}/report.xml"/>
+		</jacoco:report>
+	</target>
+</project>
+
+
+
