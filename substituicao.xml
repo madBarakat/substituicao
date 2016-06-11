@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<description> This XML is responsible to manage de code coverage setup </description>
+	<ant antfile="build.xml"/>
+
+</project>
+
