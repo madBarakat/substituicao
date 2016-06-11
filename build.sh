@@ -13,5 +13,12 @@ unzip -q glassfish-3.1.2.zip
 
 echo " "
 ant
-exit $?
+antReturnCode=$?
+if [ $antReturnCode = 0 ];then
+	ant -buildfile substituicao.xml	
+fi
+exit $?	
+	
+
+
 
