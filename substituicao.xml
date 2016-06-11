@@ -2,6 +2,6 @@
 <project>
 	<description> This XML is responsible to manage de code coverage setup </description>
 	<ant antfile="build.xml"/>
-
+	<ant antfile="coverage.xml" target="jacocoReport"/>
 </project>
 
