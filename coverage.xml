@@ -7,10 +7,11 @@
 	<property name="result.classes.dir" location="${result.dir}/classes"/>	
 	<property name="result.report.dir" location="${result.dir}/jacoco"/>
 	<property name="result.exec.file" location="${result.dir}/jacoco.exec"/>
-	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml"> 
-		<classpath path="lib/jacocoant.jar"/>
-	</taskdef>
-	<target name="jacocoReport">
+	
+	<target xmlns:jacoco="antlib:org.jacoco.ant" name="jacocoReport">
+		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml"> 
+			<classpath path="lib/jacocoant.jar"/>
+		</taskdef>
 		<jacoco:report>
 			<executiondata>
 				<file file="${result.exec.file}"/>
