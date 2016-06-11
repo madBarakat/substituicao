@@ -70,12 +70,36 @@
     nbproject/build-impl.xml file. 
 
     -->
-	<taskdef resource="net/sf/antcontrib/antcontrib.properties">  
+	
+	<target depends="init,compile-test,-pre-test-run" if="have.tests" name="-do-test-run" xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:jacoco="antlib:org.jacoco.ant" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3">	
+		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml"> 
+			<classpath path="lib/jacocoant.jar"/>
+		</taskdef> 
+		<!-- <j2seproject3:test includes="${includes}" testincludes="**/*Test.java"/>	 -->
+		   <path id="classpath">
+        		<fileset dir="lib/junit_4" includes="*.jar"/>
+    		   </path>
+		<jacoco:coverage enabled="true" destfile="build/jacoco.exec">	
+
+		<junit printsummary="yes" haltonfailure="yes" fork="yes" forkmode="once">
+		 <classpath location="build/classes"/> 
+           	 <classpath refid="classpath" /> 
+           	 <formatter type="xml" />
+            	<batchtest todir="${reports.junit.xml.dir}">
+		      	<fileset dir="test">
+		        	<include name="**/*Test.java" />
+		     	 </fileset>
+            	</batchtest>
+          	</junit>   
+		</jacoco:coverage>
+	</target>
+	
+	<!-- <taskdef resource="net/sf/antcontrib/antcontrib.properties">  
 		<classpath>    
 		<pathelement location="${user.home}/.ant/lib/ant-contrib-1.0b3-jar.jar"/>       
 		</classpath> 
-	</taskdef> 
-	<target depends="init,compile-test,-pre-test-run" if="have.tests" name="-do-test-run" xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1"  xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3">
+	</taskdef> -->
+	<!-- <target depends="init,compile-test,-pre-test-run" if="have.tests" name="-do-test-run" xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1"  xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3">
 			  
 		<target xmlns:jacoco="antlib:org.jacoco.ant" name="jacocoCoverage">
 			 <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml"> 
@@ -95,6 +119,6 @@
 			</junit>
 			</jacoco:coverage>
 		</target>
-	</target>
+	</target> -->
 </project>
 		   
