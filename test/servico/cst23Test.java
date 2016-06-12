@@ -36,8 +36,7 @@ public class cst23Test {
     
     @BeforeClass
     public static void setUpClass() throws NonexistentEntityException, Exception{
-        PopulateDB.recreateDB("prosub", "root", "");
-        PopulateDB.populateUseCaseTest();
+        
     }   
     
     @AfterClass
@@ -45,7 +44,9 @@ public class cst23Test {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+        PopulateDB.recreateDB("prosub", "root", "");
+        PopulateDB.populateUseCaseTest();
         
     }
     
@@ -60,12 +61,13 @@ public class cst23Test {
         assertTrue(loginService.verificarUsuarioESenha("Administrador", "123456"));
         AdministracaoDeUsuariosService administracaoDeUsuarioService = new AdministracaoDeUsuariosService();
         List<UsuarioModel> usuariosList = administracaoDeUsuarioService.listarUsuarios();
-        UsuarioModel usuario = usuariosList.get(3);               
-        assertEquals(usuario.Usuario, "Professor3");
-        assertEquals(usuario.Senha, "123456");
-        assertEquals(usuario.profile, Perfil.PROFESSOR);
+        UsuarioModel usuario = usuariosList.get(3);
         try {
-            administracaoDeUsuarioService.editarUsuario("SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);            
+            administracaoDeUsuarioService.editarUsuario("123456", Perfil.PROFESSOR, usuario.id);
+            assertEquals(usuario.Usuario, "Professor3");
+            assertEquals(usuario.Senha, "123456");
+            assertEquals(usuario.profile, Perfil.PROFESSOR);
+            administracaoDeUsuarioService.editarUsuario("SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);
             UsuarioModel usuarioEditado = administracaoDeUsuarioService.obterUsuario("Professor3");
             assertEquals(usuario.Usuario, "Professor3");
             assertEquals(usuario.Senha, "SenhaEditadaTeste");
