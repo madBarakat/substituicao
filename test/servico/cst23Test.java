@@ -65,8 +65,8 @@ public class cst23Test {
         assertEquals(usuario.Senha, "123456");
         assertEquals(usuario.profile, Perfil.PROFESSOR);
         try {
-            administracaoDeUsuarioService.editarUsuario("SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);
-            usuario = usuariosList.get(3);
+            administracaoDeUsuarioService.editarUsuario("SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);            
+            UsuarioModel usuarioEditado = administracaoDeUsuarioService.obterUsuario("Professor3");
             assertEquals(usuario.Usuario, "Professor3");
             assertEquals(usuario.Senha, "SenhaEditadaTeste");
             assertEquals(usuario.profile, Perfil.FUNCIONARIO);
