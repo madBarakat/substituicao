@@ -26,8 +26,9 @@ if [ $antReturnCode = 0 ];then
 	
 else
 	ant -buildfile substituicao.xml
-	java -jar lib/jpm4j.jar -g init
 	curl https://www.jpm4j.org/install/script | sh
+	apt-get install nodejs-legacy
+	npm install jpm --global
 	jpm install com.codacy:codacy-coverage-reporter:assembly
 	codacy-coverage-reporter -l Java -r build/coverage.xml
 		
