@@ -59,7 +59,6 @@ public class cst23Test {
         LoginService loginService = new LoginService();
         assertTrue(loginService.verificarUsuarioESenha("Administrador", "123456"));
         AdministracaoDeUsuariosService administracaoDeUsuarioService = new AdministracaoDeUsuariosService();
-        administracaoDeUsuarioService.salvarUsuario("UsuarioTeste", "SenhaTeste", Perfil.PROFESSOR);
         List<UsuarioModel> usuariosList = administracaoDeUsuarioService.listarUsuarios();
         UsuarioModel usuario = usuariosList.get(usuariosList.size()-2);               
         assertEquals(usuario.Usuario, "Professor3");
