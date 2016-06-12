@@ -79,6 +79,7 @@
 		   <path id="classpath">
         		<fileset dir="lib/junit_4" includes="*.jar"/>
     		   </path>
+		<property name="reports.junit.xml.dir" value="build/test/results"/>
 		<jacoco:coverage enabled="true" destfile="build/jacoco.exec">	
 
 		<junit printsummary="yes" haltonfailure="yes" fork="yes" forkmode="once">
