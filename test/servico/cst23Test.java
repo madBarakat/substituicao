@@ -60,13 +60,14 @@ public class cst23Test {
         assertTrue(loginService.verificarUsuarioESenha("Administrador", "123456"));
         AdministracaoDeUsuariosService administracaoDeUsuarioService = new AdministracaoDeUsuariosService();
         List<UsuarioModel> usuariosList = administracaoDeUsuarioService.listarUsuarios();
-        UsuarioModel usuario = usuariosList.get(usuariosList.size()-2);               
+        UsuarioModel usuario = usuariosList.get(3);               
         assertEquals(usuario.Usuario, "Professor3");
         assertEquals(usuario.Senha, "123456");
         assertEquals(usuario.profile, Perfil.PROFESSOR);
         try {
             administracaoDeUsuarioService.editarUsuario("SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);
-            usuario = usuariosList.get(usuariosList.size()-2); 
+            usuario = usuariosList.get(3);
+            assertEquals(usuario.Usuario, "Professor3");
             assertEquals(usuario.Senha, "SenhaEditadaTeste");
             assertEquals(usuario.profile, Perfil.FUNCIONARIO);
         } catch (Exception ex) {
