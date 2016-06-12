@@ -28,8 +28,8 @@ else
 	ant -buildfile substituicao.xml
 	sudo curl https://www.jpm4j.org/install/script | sh
 	sudo apt-get install nodejs-legacy
-	sudo npm install jpm --global
-	sudo jpm install com.codacy:codacy-coverage-reporter:assembly
+	npm install jpm --global
+	jpm install com.codacy:codacy-coverage-reporter:assembly
 	codacy-coverage-reporter -l Java -r build/coverage.xml
 		
 fi
