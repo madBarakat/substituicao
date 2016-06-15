@@ -60,7 +60,8 @@ public class AdministracaoDeUsuariosServiceTest {
     @Test
     public void testeDeveSalvarUsuario() throws NonexistentEntityException {
         
-        serviceEmTeste.salvarUsuario("Victor hugo", "senhaDificil", Perfil.FUNCIONARIO);
+        serviceEmTeste.salvarUsuario("Victor hugo", "senhaDificil",
+                Perfil.FUNCIONARIO);
 
         Usuario usuarioQueEuColoquei = controller.findUsuario(proximoId);
         
@@ -71,9 +72,11 @@ public class AdministracaoDeUsuariosServiceTest {
     }
     
     @Test
-    public void testeEditarUsuario() throws NonexistentEntityException, Exception{
+    public void testeEditarUsuario() throws NonexistentEntityException,
+            Exception{
               
-        serviceEmTeste.editarUsuario("novaSenhaDificil", Perfil.PROFESSOR, idUsuarioJaNoBanco);
+        serviceEmTeste.editarUsuario("novaSenhaDificil", Perfil.PROFESSOR,
+                idUsuarioJaNoBanco);
         
         Usuario usuarioModificado = controller.findUsuario(idUsuarioJaNoBanco);
         

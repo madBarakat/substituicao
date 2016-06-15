@@ -31,7 +31,8 @@ public class cst02Test {
     }
     
     @BeforeClass
-    public static void setUpClass() throws NonexistentEntityException, Exception{
+    public static void setUpClass() 
+            throws NonexistentEntityException, Exception{
         PopulateDB.recreateDB("prosub", "root", "");
         PopulateDB.populateUseCaseTest();
     }   
@@ -52,18 +53,22 @@ public class cst02Test {
     public void testeNotificaçãoDeAusência_DiaInteiro() throws ParseException
     {
         LoginService loginService = new LoginService();
-        assertTrue(loginService.verificarUsuarioESenha("Funcionario1", "123456"));
+        assertTrue(loginService.verificarUsuarioESenha(
+                "Funcionario1", "123456"));
         
         ProfessorService professorService = new ProfessorService();
-        ProfessorModel professor = professorService.obterProfessorPorNome("Professor1");
+        ProfessorModel professor = professorService.obterProfessorPorNome(
+                "Professor1");
         
         NotificacaoService notificaçãoService = new NotificacaoService();
         List<AusenciaModel> ausencias = notificaçãoService.listarAusencias();        
         assertEquals(0, ausencias.size());
         
-        notificaçãoService.notificarAusencia(professor.id, "25/11/2013", "25/11/2013", "Palestra", new LinkedList<String>());
+        notificaçãoService.notificarAusencia(professor.id, "25/11/2013",
+                "25/11/2013", "Palestra", new LinkedList<String>());
         
-        assertTrue(loginService.verificarUsuarioESenha("Administrador", "123456"));
+        assertTrue(loginService.verificarUsuarioESenha(
+                "Administrador", "123456"));
         ausencias = notificaçãoService.listarAusencias();        
         assertEquals(3, ausencias.size());
         assertEquals("Professor1", ausencias.get(0).professorAusente);

@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
 import modelo.UsuarioModel;
 
 /**
@@ -54,15 +55,19 @@ public class cst23Test {
     {
         LoginService loginService = new LoginService();
         assertTrue(loginService.verificarUsuarioESenha("Administrador", "123456"));
-        AdministracaoDeUsuariosService administracaoDeUsuarioService = new AdministracaoDeUsuariosService();
-        List<UsuarioModel> usuariosList = administracaoDeUsuarioService.listarUsuarios();
+        AdministracaoDeUsuariosService administracaoDeUsuarioService =
+                new AdministracaoDeUsuariosService();
+        List<UsuarioModel> usuariosList = 
+                administracaoDeUsuarioService.listarUsuarios();
         UsuarioModel usuario = usuariosList.get(3);         
         assertEquals(usuario.Usuario, "Professor3");
         assertEquals(usuario.Senha, "123456");
         assertEquals(usuario.profile, Perfil.PROFESSOR);
         try {
-            administracaoDeUsuarioService.editarUsuario("SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);
-            UsuarioModel usuarioEditado = administracaoDeUsuarioService.obterUsuario("Professor3");
+            administracaoDeUsuarioService.editarUsuario(
+                    "SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);
+            UsuarioModel usuarioEditado = 
+                    administracaoDeUsuarioService.obterUsuario("Professor3");
             assertEquals(usuarioEditado.Usuario, "Professor3");
             assertEquals(usuarioEditado.Senha, "SenhaEditadaTeste");
             assertEquals(usuarioEditado.profile, Perfil.FUNCIONARIO);
