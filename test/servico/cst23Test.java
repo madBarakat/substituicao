@@ -54,7 +54,8 @@ public class cst23Test {
     public void testeEditarUsuario() throws ParseException
     {
         LoginService loginService = new LoginService();
-        assertTrue(loginService.verificarUsuarioESenha("Administrador", "123456"));
+        assertTrue(loginService.verificarUsuarioESenha(
+                "Administrador", "123456"));
         AdministracaoDeUsuariosService administracaoDeUsuarioService =
                 new AdministracaoDeUsuariosService();
         List<UsuarioModel> usuariosList = 
@@ -65,12 +66,14 @@ public class cst23Test {
         assertEquals(usuario.profile, Perfil.PROFESSOR);
         try {
             administracaoDeUsuarioService.editarUsuario(
-                    "SenhaEditadaTeste", Perfil.FUNCIONARIO, usuario.id);
+                    "SenhaEditadaTeste", Perfil.PROFESSOR, usuario.id);
             UsuarioModel usuarioEditado = 
                     administracaoDeUsuarioService.obterUsuario("Professor3");
             assertEquals(usuarioEditado.Usuario, "Professor3");
             assertEquals(usuarioEditado.Senha, "SenhaEditadaTeste");
-            assertEquals(usuarioEditado.profile, Perfil.FUNCIONARIO);
+            
+            assertTrue(loginService.verificarUsuarioESenha(
+                    "Professor3", "SenhaEditadaTeste"));
         } catch (Exception ex) {
             Logger.getLogger(cst23Test.class.getName()).log(Level.SEVERE, null, ex);
         }         
